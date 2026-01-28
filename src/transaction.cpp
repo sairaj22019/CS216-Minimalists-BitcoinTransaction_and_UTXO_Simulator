@@ -1,89 +1,147 @@
-#include <string>
-#include <vector>
-using namespace std;
+// #include <string>
+// #include <vector>
+// #include "transaction.h"
+// using namespace std;
  
-class TransactionInput {
-    private:
+// class TransactionInput {
+//     private:
 
-        string tx_id;
-        int index;
-        string owner;
+//         string tx_id;
+//         int index;
+//         string owner;
 
-    public:
+//     public:
 
-        TransactionInput(string tx_id1,int index1,string owner1) {
-            tx_id=tx_id1;
-            index=index1;
-            owner=owner1;
-        } 
+//         TransactionInput(string tx_id1,int index1,string owner1) {
+//             tx_id=tx_id1;
+//             index=index1;
+//             owner=owner1;
+//         } 
 
-        string GetTransactionId() {
-            return tx_id;
-        }
+//         string GetTransactionId() {
+//             return tx_id;
+//         }
 
-        int GetTransactionIndex() {
-            return index;
-        }
+//         int GetTransactionIndex() {
+//             return index;
+//         }
 
-        string GetTransactionOwner() {
-            return owner;
-        }
-};
+//         string GetTransactionOwner() {
+//             return owner;
+//         }
+// };
 
-class TransactionOutput {
-    private:
+// class TransactionOutput {
+//     private:
 
-        double amount;
-        string owner;
+//         double amount;
+//         string owner;
 
-    public:
+//     public:
 
-        TransactionOutput(double amount1,string owner1) {
-            amount=amount1;
-            owner=owner1;
-        }
+//         TransactionOutput(double amount1,string owner1) {
+//             amount=amount1;
+//             owner=owner1;
+//         }
 
-        double GetTransactionAmount() {
-            return amount;
-        }
+//         double GetTransactionAmount() {
+//             return amount;
+//         }
 
-        string GetTransactionOwner() {
-            return owner;
-        }
+//         string GetTransactionOwner() {
+//             return owner;
+//         }
+
+// };
+
+// class Transaction {
+//     private:
+
+//         string tx_id;
+//         vector<TransactionInput> inputs;
+//         vector<TransactionOutput> outputs;
+
+//     public:
+
+//         Transaction(string tx_id1,vector<TransactionInput> Inputs1,vector<TransactionOutput> Outputs1) {
+//             tx_id=tx_id1;
+//             inputs=Inputs1;
+//             outputs=Outputs1;
+//         }
+
+//         vector<TransactionInput> getTransactionInputs() {
+//             return inputs;
+//         }
+
+//         vector<TransactionOutput> getTransactionOutputs() {
+//             return outputs;
+//         }
+
+//         string getTransactionID() {
+//             return tx_id;
+//         }
+
+//         bool operator<(const Transaction &t1) const
+//         {
+//             return (tx_id<t1.tx_id);
+//         }
+// };  
+#include "Transaction.h"
+using namespace std;
 
 
+TransactionInput::TransactionInput(string tx_id1, int index1, string owner1) {
+    tx_id = tx_id1;
+    index = index1;
+    owner = owner1;
+}
 
-};
+string TransactionInput::GetTransactionId() {
+    return tx_id;
+}
 
-class Transaction {
-    private:
+int TransactionInput::GetTransactionIndex() {
+    return index;
+}
 
-        string tx_id;
-        vector<TransactionInput> inputs;
-        vector<TransactionOutput> outputs;
+string TransactionInput::GetTransactionOwner() {
+    return owner;
+}
 
-    public:
+TransactionOutput::TransactionOutput(double amount1, string owner1) {
+    amount = amount1;
+    owner = owner1;
+}
 
-        Transaction(string tx_id1,vector<TransactionInput> Inputs1,vector<TransactionOutput> Outputs1) {
-            tx_id=tx_id1;
-            inputs=Inputs1;
-            outputs=Outputs1;
-        }
+double TransactionOutput::GetTransactionAmount() {
+    return amount;
+}
 
-        vector<TransactionInput> getTransactionInputs() {
-            return inputs;
-        }
+string TransactionOutput::GetTransactionOwner() {
+    return owner;
+}
 
-        vector<TransactionOutput> getTransactionOutputs() {
-            return outputs;
-        }
+Transaction::Transaction(string tx_id1,
+    vector<TransactionInput> Inputs1,
+    vector<TransactionOutput> Outputs1) {
 
-        string getTransactionID() {
-            return tx_id;
-        }
+    tx_id = tx_id1;
+    inputs = Inputs1;
+    outputs = Outputs1;
+}
 
-        bool operator<(const Transaction &t1) const
-        {
-            return (tx_id<t1.tx_id);
-        }
-};  
+vector<TransactionInput> Transaction::getTransactionInputs() {
+    return inputs;
+}
+
+vector<TransactionOutput> Transaction::getTransactionOutputs() {
+    return outputs;
+}
+
+string Transaction::getTransactionID() {
+    return tx_id;
+}
+
+bool Transaction::operator<(const Transaction &t1) const {
+    return tx_id < t1.tx_id;
+}

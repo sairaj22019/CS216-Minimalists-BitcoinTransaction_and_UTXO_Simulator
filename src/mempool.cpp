@@ -4,89 +4,81 @@
 #include "transaction.h"
 #include "utxomanager.h"
 #include "validator.h"
+#include "mempool.h"
 using namespace std;
 
-class Mempool {
-    private:
 
-        int capacity;
-        set<pair<string,int>> spent_utxos; // set<tx_id,index>
-        vector<pair<int,Transaction>> transactions;
+Mempool::Mempool() {
+    capacity = 100;
+}
 
-    public:
+Mempool::Mempool(int max_size) {
+    capacity = max_size;
+}
 
-        Mempool() {
-            capacity = 100;
+pair<bool,string> Mempool::add_transaction(Transaction& tx, UTXOManager& utxo_manager) {
+    vector<TransactionInput> Inputs = tx.getTransactionInputs();
+    vector<TransactionOutput> Outputs = tx.getTransactionOutputs();
+
+    double InputSum = 0;
+    double OutputSum = 0;
+    
+    pair<bool,string> valid = validateTransaction(tx,utxo_manager,InputSum,OutputSum,spent_utxos);
+
+    if(!valid.first) {
+        return valid;
+    }
+
+    for(auto Input:Inputs) {
+        string tx_id=Input.GetTransactionId();
+        int index=Input.GetTransactionIndex();
+        spent_utxos.insert({tx_id,index});
+    }
+
+    transactions.push_back({InputSum-OutputSum , tx});
+
+    sort(transactions.rbegin(),transactions.rend());
+    if(transactions.size() > capacity) {
+        int rem = transactions.size() - capacity;
+        while(rem > 0) {
+            transactions.pop_back();
+            rem--;
         }
+    }
 
-        Mempool(int max_size) {
-            capacity = max_size;
-        }
+    return {true,"Transaction Successful"};
+}
 
-        pair<bool,string> add_transaction(Transaction& tx, UTXOManager& utxo_manager) {
-            vector<TransactionInput> Inputs = tx.getTransactionInputs();
-            vector<TransactionOutput> Outputs = tx.getTransactionOutputs();
+vector<Transaction> Mempool::get_top_transactions(int n) {
+    sort(transactions.begin(),transactions.end());
+    vector<Transaction> confirmedTransactions;
+    int size=transactions.size();
 
-            double InputSum = 0;
-            double OutputSum = 0;
-            
-            pair<bool,string> valid = validateTransaction(tx,utxo_manager,InputSum,OutputSum,spent_utxos);
+    int selectedSize=min(n,size);
 
-            if(!valid.first) {
-                return valid;
-            }
+    while(selectedSize--) {
+        confirmedTransactions.push_back(transactions.back().second);
+        transactions.pop_back();
+    }
 
-            for(auto Input:Inputs) {
-                string tx_id=Input.GetTransactionId();
-                int index=Input.GetTransactionIndex();
-                spent_utxos.insert({tx_id,index});
-            }
+    return confirmedTransactions;
+}
 
-            transactions.push_back({InputSum-OutputSum , tx});
+void Mempool::clear() {
+    capacity = 0;
+    transactions.clear();
+    spent_utxos.clear();
+}
 
-            sort(transactions.rbegin(),transactions.rend());
-            if(transactions.size() > capacity) {
-                int rem = transactions.size() - capacity;
-                while(rem > 0) {
-                    transactions.pop_back();
-                    rem--;
-                }
-            }
+int Mempool::getCapacity() {
+    return capacity;
+}
 
-            return {true,"Transaction Successful"};
-        }
+set<pair<string,int>> Mempool::getSpent_utxo() {
+    return spent_utxos;
+}
 
-        vector<Transaction> get_top_transactions(int n) {
-            sort(transactions.begin(),transactions.end());
-            vector<Transaction> confirmedTransactions;
-            int size=transactions.size();
-
-            int selectedSize=min(n,size);
-
-            while(selectedSize--) {
-                confirmedTransactions.push_back(transactions.back().second);
-                transactions.pop_back();
-            }
-
-            return confirmedTransactions;
-        }
-
-        void clear() {
-            capacity = 0;
-            transactions.clear();
-            spent_utxos.clear();
-        }
-
-        int getCapacity() {
-            return capacity;
-        }
-
-        set<pair<string,int>> getSpent_utxo() {
-            return spent_utxos;
-        }
-
-        vector<pair<int,Transaction>> getTransactions() {
-            return transactions;
-        }
-};
+vector<pair<int,Transaction>> Mempool::getTransactions() {
+    return transactions;
+}
 
