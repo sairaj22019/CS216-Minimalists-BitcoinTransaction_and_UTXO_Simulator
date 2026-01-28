@@ -1,9 +1,9 @@
 #include <set>
 #include <iostream>
-#include <queue>
 #include <algorithm>
 #include "transaction.h"
 #include "utxomanager.h"
+#include "validator.h"
 using namespace std;
 
 class Mempool {
@@ -29,32 +29,11 @@ class Mempool {
 
             double InputSum = 0;
             double OutputSum = 0;
-            for(auto Input:Inputs){
-                string tx_id=Input.GetTransactionId();
-                int index=Input.GetTransactionIndex();
-                string owner=Input.GetTransactionOwner();
+            
+            pair<bool,string> valid = validateTransaction(tx,utxo_manager,InputSum,OutputSum,spent_utxos);
 
-                if(owner!=utxo_manager.GetUTXODetails(tx_id,index).second) {
-                    return {false,"UTXO does not belong to this owner"};
-                }
-
-                if(!utxo_manager.exists(tx_id,index)){
-                    return {false,"UTXO is invalid"};
-                }
-
-                if(spent_utxos.find({tx_id,index})!=spent_utxos.end()){
-                    return {false,"UTXO is already spent"};
-                }
-
-                InputSum+=utxo_manager.GetUTXODetails(tx_id,index).first;
-            }
-
-            for(auto output:Outputs) {
-                OutputSum+=output.GetTransactionAmount();
-            }
-
-            if(OutputSum>InputSum) {
-                return {false,"Transaction Invalid"};
+            if(!valid.first) {
+                return valid;
             }
 
             for(auto Input:Inputs) {
@@ -98,5 +77,16 @@ class Mempool {
             spent_utxos.clear();
         }
 
+        int getCapacity() {
+            return capacity;
+        }
+
+        set<pair<string,int>> getSpent_utxo() {
+            return spent_utxos;
+        }
+
+        vector<pair<int,Transaction>> getTransactions() {
+            return transactions;
+        }
 };
 
