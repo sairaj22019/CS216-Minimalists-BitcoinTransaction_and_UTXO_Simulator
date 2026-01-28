@@ -19,6 +19,8 @@ class UTXOManager {
         /// @return A boolean indicating whether the transaction exists.
         bool exists(string tx_id,int index);
 
+        pair<double,string> GetUTXODetails(string tx_id,int index);
+
         /// @brief Adds a UTXO into the UTXO set
         /// @param tx_id The Transaction ID
         /// @param index The Index

@@ -25,6 +25,10 @@ class UTXOManager {
             return false;
         }
 
+        pair<double,string> GetUTXODetails(string tx_id,int index) {
+            return utxo_set[{tx_id,index}];
+        }
+
         /// @brief Adds a UTXO into the UTXO set
         /// @param tx_id The Transaction ID
         /// @param index The Index

@@ -17,6 +17,17 @@ class TransactionInput {
             owner=owner1;
         } 
 
+        string GetTransactionId() {
+            return tx_id;
+        }
+
+        int GetTransactionIndex() {
+            return index;
+        }
+
+        string GetTransactionOwner() {
+            return owner;
+        }
 };
 
 class TransactionOutput {
@@ -31,6 +42,16 @@ class TransactionOutput {
             amount=amount1;
             owner=owner1;
         }
+
+        double GetTransactionAmount() {
+            return amount;
+        }
+
+        string GetTransactionOwner() {
+            return owner;
+        }
+
+
 
 };
 
@@ -59,5 +80,10 @@ class Transaction {
 
         string getTransactionID() {
             return tx_id;
+        }
+
+        bool operator<(const Transaction &t1) const
+        {
+            return (tx_id<t1.tx_id);
         }
 };  

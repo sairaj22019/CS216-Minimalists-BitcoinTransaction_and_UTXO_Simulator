@@ -13,6 +13,9 @@ class TransactionInput {
     public:
 
         TransactionInput(string tx_id1,int index1,string owner1);
+        string GetTransactionId();
+        int GetTransactionIndex();
+        string GetTransactionOwner();
 
 };
 
@@ -25,6 +28,8 @@ class TransactionOutput {
     public:
 
         TransactionOutput(double amount1,string owner1);
+        double GetTransactionAmount();
+        string GetTransactionOwner();
 
 };
 
@@ -45,4 +50,5 @@ class Transaction {
 
         string getTransactionID();
         
+        bool operator<(const Transaction &t1) const;
 };
