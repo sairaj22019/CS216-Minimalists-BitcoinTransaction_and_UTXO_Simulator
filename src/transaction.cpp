@@ -49,4 +49,15 @@ class Transaction {
             outputs=Outputs1;
         }
 
-};
+        vector<TransactionInput> getTransactionInputs() {
+            return inputs;
+        }
+
+        vector<TransactionOutput> getTransactionOutputs() {
+            return outputs;
+        }
+
+        string getTransactionID() {
+            return tx_id;
+        }
+};  

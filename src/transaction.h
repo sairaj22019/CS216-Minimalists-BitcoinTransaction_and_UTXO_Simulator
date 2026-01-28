@@ -39,4 +39,10 @@ class Transaction {
 
         Transaction(string tx_id1,vector<TransactionInput> Inputs1,vector<TransactionOutput> Outputs1);
         
+        vector<TransactionInput> getTransactionInputs();
+
+        vector<TransactionOutput> getTransactionOutputs();
+
+        string getTransactionID();
+        
 };
