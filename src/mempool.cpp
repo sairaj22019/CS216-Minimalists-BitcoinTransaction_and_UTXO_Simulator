@@ -9,7 +9,7 @@ using namespace std;
 
 
 Mempool::Mempool() {
-    capacity = 100;
+    capacity = 10;
 }
 
 Mempool::Mempool(int max_size) {
@@ -55,10 +55,10 @@ vector<Transaction> Mempool::get_top_transactions(int n) {
     int size=transactions.size();
 
     int selectedSize=min(n,size);
-
+    vector<pair<int,Transaction>> temp_transactions = transactions;
     while(selectedSize--) {
-        confirmedTransactions.push_back(transactions.back().second);
-        transactions.pop_back();
+        confirmedTransactions.push_back(temp_transactions.back().second);
+        temp_transactions.pop_back();
     }
 
     return confirmedTransactions;
@@ -76,6 +76,11 @@ int Mempool::getCapacity() {
 
 set<pair<string,int>> Mempool::getSpent_utxo() {
     return spent_utxos;
+}
+
+void Mempool::updateSpent_utxo(set<pair<string,int>> &spent_utxo1)
+{
+    spent_utxos=spent_utxo1;
 }
 
 vector<pair<int,Transaction>> Mempool::getTransactions() {

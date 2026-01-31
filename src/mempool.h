@@ -22,5 +22,6 @@ class Mempool {
         void clear();
         int getCapacity();
         set<pair<string,int>> getSpent_utxo();
+        void updateSpent_utxo(set<pair<string,int>> &spent_utxo1);
         vector<pair<int,Transaction>> getTransactions();
 };
