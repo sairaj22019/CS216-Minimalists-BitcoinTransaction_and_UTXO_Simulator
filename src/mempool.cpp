@@ -26,6 +26,7 @@ pair<bool,string> Mempool::add_transaction(Transaction& tx, UTXOManager& utxo_ma
     pair<bool,string> valid = validateTransaction(tx,utxo_manager,InputSum,OutputSum,spent_utxos);
 
     if(!valid.first) {
+        cout<<"Error: "<<valid.second<<endl;
         return valid;
     }
 
@@ -41,6 +42,13 @@ pair<bool,string> Mempool::add_transaction(Transaction& tx, UTXOManager& utxo_ma
     if(transactions.size() > capacity) {
         int rem = transactions.size() - capacity;
         while(rem > 0) {
+            Transaction removed_tx = transactions.back().second;
+            vector<TransactionInput> inputs = removed_tx.getTransactionInputs();
+            for(auto input : inputs) {
+                string tx_id = input.GetTransactionId();
+                int index = input.GetTransactionIndex();
+                spent_utxos.erase({tx_id,index});
+            }
             transactions.pop_back();
             rem--;
         }
