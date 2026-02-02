@@ -5,6 +5,7 @@
 #include "transaction.h"
 #include "block.h"
 #include <iomanip>
+#include "../tests/tests.h"
 
 using namespace std;
 
@@ -176,7 +177,11 @@ void mineBlock() {
 }
 
 void runTestScenarios() {
-
+    cout<<"Enter Test Scenario number : ";
+    int testNumber;
+    cin>>testNumber;
+    TestRunner testRunner;
+    testRunner.runTest(testNumber);
 }
 
 int main() {

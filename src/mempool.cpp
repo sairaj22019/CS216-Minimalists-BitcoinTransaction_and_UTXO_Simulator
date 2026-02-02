@@ -72,7 +72,6 @@ vector<Transaction> Mempool::get_top_and_pop_transactions(int n) {
 }
 
 void Mempool::clear() {
-    capacity = 0;
     transactions.clear();
     spent_utxos.clear();
 }
