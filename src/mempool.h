@@ -11,17 +11,18 @@ class Mempool {
 
         int capacity;
         set<pair<string,int>> spent_utxos; // set<tx_id,index>
-        vector<pair<int,Transaction>> transactions;
+        vector<pair<double,Transaction>> transactions;
 
     public:
 
         Mempool();
         Mempool(int max_size);
         pair<bool,string> add_transaction(Transaction& tx, UTXOManager& utxo_manager);
-        vector<Transaction> get_top_transactions(int n);
+        vector<Transaction> get_top_and_pop_transactions(int n);
         void clear();
         int getCapacity();
         set<pair<string,int>> getSpent_utxo();
         void updateSpent_utxo(set<pair<string,int>> &spent_utxo1);
-        vector<pair<int,Transaction>> getTransactions();
+        vector<pair<double,Transaction>> getTransactions();
+        int getMempoolSize();
 };

@@ -83,3 +83,7 @@ vector<pair<pair<string,double>,pair<int,string>>> UTXOManager::get_utxos_for_ow
     }
     return utxo_list;
 }
+
+map<pair<string,int>,pair<double,string>> UTXOManager::get_utxo_set(){
+    return utxo_set;
+}

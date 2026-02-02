@@ -43,4 +43,6 @@ class UTXOManager {
         /// @return The list containing all the UTXO's of the owner.
         vector<pair<pair<string,double>,pair<int,string>>> get_utxos_for_owner(string owner);
 
+        map<pair<string,int>,pair<double,string>> get_utxo_set();
+
 };

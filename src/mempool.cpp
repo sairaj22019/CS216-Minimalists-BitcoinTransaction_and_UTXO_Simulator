@@ -49,16 +49,15 @@ pair<bool,string> Mempool::add_transaction(Transaction& tx, UTXOManager& utxo_ma
     return {true,"Transaction Successful"};
 }
 
-vector<Transaction> Mempool::get_top_transactions(int n) {
+vector<Transaction> Mempool::get_top_and_pop_transactions(int n) {
     sort(transactions.begin(),transactions.end());
     vector<Transaction> confirmedTransactions;
     int size=transactions.size();
 
     int selectedSize=min(n,size);
-    vector<pair<int,Transaction>> temp_transactions = transactions;
     while(selectedSize--) {
-        confirmedTransactions.push_back(temp_transactions.back().second);
-        temp_transactions.pop_back();
+        confirmedTransactions.push_back(transactions.back().second);
+        transactions.pop_back();
     }
 
     return confirmedTransactions;
@@ -83,7 +82,10 @@ void Mempool::updateSpent_utxo(set<pair<string,int>> &spent_utxo1)
     spent_utxos=spent_utxo1;
 }
 
-vector<pair<int,Transaction>> Mempool::getTransactions() {
+vector<pair<double,Transaction>> Mempool::getTransactions() {
     return transactions;
 }
 
+int Mempool::getMempoolSize() {
+    return transactions.size();
+}
