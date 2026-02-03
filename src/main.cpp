@@ -44,7 +44,8 @@ void printChoices() {
     cout<<"3. View mempool "<<endl;
     cout<<"4. Mine block "<<endl;
     cout<<"5. Run test scenarios "<<endl;
-    cout<<"6. Exit "<<endl;
+    cout<<"6. Print BlockChain "<<endl;
+    cout<<"7. Exit "<<endl;
 }
 
 void createTransaction() {
@@ -223,6 +224,9 @@ int main() {
                 runTestScenarios();
                 break;
             case 6:
+                blockChain.printBlockChain();
+                break;
+            case 7:
                 cout<<"Program Terminated. Press Enter to Exit."<<endl;
                 cin.get();
                 cin.get();

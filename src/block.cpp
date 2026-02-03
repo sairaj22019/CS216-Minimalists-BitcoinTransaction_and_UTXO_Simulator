@@ -18,6 +18,15 @@ void Block::add_transaction(Transaction t)
     block.push_back(t);
 }
 
+void Block::printBlock(){
+    cout<<block.back().getTransactionID()<<endl<<endl;
+
+    for(int i=0; i+1<block.size(); i++) {
+        cout<<block[i].getTransactionID()<<endl;
+    }
+}
+
+
 BlockChain::BlockChain(){
     blocks={};
 }
@@ -71,9 +80,18 @@ void BlockChain::mine_block(string miner_address,Mempool &mempool,UTXOManager &u
     TransactionOutput coin_base_output(transaction_fee+mining_reward,miner_address);
     Transaction coin_base_tx(block_id,{},{coin_base_output});
 
-    cout<<"miner "<<miner_address<<" received total reward of "<<fixed<<setprecision(4)<<transaction_fee+mining_reward<<" BTC"<<endl;
+    cout<<"Miner "<<miner_address<<" received total reward of "<<fixed<<setprecision(4)<<transaction_fee+mining_reward<<" BTC"<<endl;
 
     block.add_transaction(coin_base_tx);
     blocks.push_back(block);
 }
 
+void BlockChain::printBlockChain(){
+    cout<<endl;
+    cout<<"Printing Blockchain..."<<endl<<endl;
+    for(int i=0;i<blocks.size();i++){
+        cout<<"---------- Block "<<i+1<<" ----------"<<endl;
+        blocks[i].printBlock();
+        cout<<endl;
+    }
+}
