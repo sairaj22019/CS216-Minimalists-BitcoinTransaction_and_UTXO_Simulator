@@ -141,6 +141,17 @@ As per the assignment requirements, here are the specific design choices we made
 
 ---
 
+### Features
+- A CLI interface to interact and perform operations.
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print Blockchain
+7. Exit
+- You can view the transactions in each block by printing the blockchain.
+
 ### Test Scenarios
 The simulator includes 10 automated test scenarios (accessible via Option 5 in the Main Menu) covering:
 1.  Basic Valid Transaction.
@@ -153,3 +164,6 @@ The simulator includes 10 automated test scenarios (accessible via Option 5 in t
 8.  Race Attack Simulation (First-seen rule).
 9.  Complete Mining Flow (UTXO updates).
 10. Unconfirmed Chain attempts (Policy: Reject).
+
+
+
