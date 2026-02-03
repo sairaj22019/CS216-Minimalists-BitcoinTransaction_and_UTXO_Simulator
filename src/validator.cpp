@@ -35,6 +35,7 @@ pair<bool,string> validateTransaction(Transaction& tx, UTXOManager& utxo_manager
         }
         
         if(spent_utxos.find({tx_id,index})!=spent_utxos.end()) {
+            cout<<"UTXO with ("<<tx_id<<","<<index<<") has already been spent"<<endl;
             return {false,"UTXO is already spent"};
         }
 
@@ -50,7 +51,7 @@ pair<bool,string> validateTransaction(Transaction& tx, UTXOManager& utxo_manager
     }
 
     if(OutputSum>InputSum) {
-        return {false,"Transaction Invalid"};
+        return {false,"Insufficient balance or input amount"};
     }
 
     return {true,"Valid"};

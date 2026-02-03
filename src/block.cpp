@@ -89,9 +89,13 @@ void BlockChain::mine_block(string miner_address,Mempool &mempool,UTXOManager &u
 void BlockChain::printBlockChain(){
     cout<<endl;
     cout<<"Printing Blockchain..."<<endl<<endl;
+    if(blocks.empty()){
+        cout<<"Blockchain is empty"<<endl;
+        return;
+    }
     for(int i=0;i<blocks.size();i++){
         cout<<"---------- Block "<<i+1<<" ----------"<<endl;
         blocks[i].printBlock();
-        cout<<endl;
+        cout<<"-----------------------------"<<endl;
     }
 }

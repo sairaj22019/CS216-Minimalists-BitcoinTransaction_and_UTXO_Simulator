@@ -17,14 +17,11 @@ int tx_number = 0;
 
 void generateGenesisBlock() {
     map<string,double> users = {
-        {"Alice", 40.0},
-        {"Bob", 50.0},
-        {"Charlie", 70.0},
-        {"Delta", 20.0},
-        {"Eve", 10.0},
-        {"Zoe", 80.0},
-        {"Max", 40.0},
-        {"El",100.0}
+        {"Alice", 50.0},
+        {"Bob", 30.0},
+        {"Charlie", 20.0},
+        {"David", 10.0},
+        {"Eve", 5.0}
     };
     cout<<"--- Initial Genesis Block ---"<<endl;
     cout<<endl;
