@@ -1,0 +1,318 @@
+========== BLOCKCHAIN TRANSACTION SIMULATOR ==========
+
+
+--- Initial Genesis Block ---
+
+- Alice : 50.0000 BTC
+- Bob : 30.0000 BTC
+- Charlie : 20.0000 BTC
+- David : 10.0000 BTC
+- Eve : 5.0000 BTC
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 2
+
+Owner        Amount      (tx_id,index)
+
+Alice      50.0000        (tx_genesis_000,0)
+Bob      30.0000        (tx_genesis_000,1)
+Charlie      20.0000        (tx_genesis_000,2)
+David      10.0000        (tx_genesis_000,3)
+Eve      5.0000        (tx_genesis_000,4)
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 3
+
+Mempool is empty
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 1
+Enter sender : Alice
+Available balance : 50.0000
+Enter recipient : Eve
+Enter amount : 20
+
+Creating transaction...
+Transaction valid!
+Transaction Fee = 0.0020
+Transaction added to mempool
+Mempool now has 1 transactions
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 1
+Enter sender : Bob
+Available balance : 30.0000
+Enter recipient : David
+Enter amount : 10
+
+Creating transaction...
+Transaction valid!
+Transaction Fee = 0.0010
+Transaction added to mempool
+Mempool now has 2 transactions
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 3
+
+Transaction ids in mempool
+tx_Alice_Eve_0
+tx_Bob_David_1
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 4
+Enter miner name : Charlie
+
+Mining block...
+Selected 2 transactions from mempool
+Total transaction fee : 0.0030 BTC
+Miner Charlie received total reward of 3.1280 BTC
+Removed 2 transactions from mempool
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 3
+
+Mempool is empty
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 2
+
+Owner        Amount      (tx_id,index)
+
+Charlie      3.1280        (coinbase_tx_0,0)
+Alice      29.9980        (tx_Alice_Eve_0,0)
+Eve      20.0000        (tx_Alice_Eve_0,1)
+Bob      19.9990        (tx_Bob_David_1,0)
+David      10.0000        (tx_Bob_David_1,1)
+Charlie      20.0000        (tx_genesis_000,2)
+David      10.0000        (tx_genesis_000,3)
+Eve      5.0000        (tx_genesis_000,4)
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 1
+Enter sender : Eve
+Available balance : 25.0000
+Enter recipient : David
+Enter amount : 15
+
+Creating transaction...
+Transaction valid!
+Transaction Fee = 0.0015
+Transaction added to mempool
+Mempool now has 1 transactions
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 1
+Enter sender : Alice
+Available balance : 29.9980
+Enter recipient : Eve
+Enter amount : 10
+
+Creating transaction...
+Transaction valid!
+Transaction Fee = 0.0010
+Transaction added to mempool
+Mempool now has 2 transactions
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 4
+Enter miner name : Bob
+
+Mining block...
+Selected 2 transactions from mempool
+Total transaction fee : 0.0025 BTC
+Miner Bob received total reward of 3.1275 BTC
+Removed 2 transactions from mempool
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 3
+
+Mempool is empty
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 2
+
+Owner        Amount      (tx_id,index)
+
+Charlie      3.1280        (coinbase_tx_0,0)
+Bob      3.1275        (coinbase_tx_1,0)
+Alice      19.9970        (tx_Alice_Eve_3,0)
+Eve      10.0000        (tx_Alice_Eve_3,1)
+Bob      19.9990        (tx_Bob_David_1,0)
+David      10.0000        (tx_Bob_David_1,1)
+Eve      4.9985        (tx_Eve_David_2,0)
+David      15.0000        (tx_Eve_David_2,1)
+Charlie      20.0000        (tx_genesis_000,2)
+David      10.0000        (tx_genesis_000,3)
+Eve      5.0000        (tx_genesis_000,4)
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 6
+
+Printing Blockchain...
+
+---------- Block 1 ----------
+coinbase_tx_0
+
+tx_Alice_Eve_0
+tx_Bob_David_1
+-----------------------------
+---------- Block 2 ----------
+coinbase_tx_1
+
+tx_Eve_David_2
+tx_Alice_Eve_3
+-----------------------------
+
+
+Main Menu:
+
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Print BlockChain
+7. Exit
+
+Enter Input Choice : 7
+Program Terminated. Press Enter to Exit.

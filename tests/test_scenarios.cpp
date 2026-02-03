@@ -236,7 +236,7 @@ void TestRunner::test9_MiningFlow() {
     cout << "Test: Add TX -> Mine Block -> Verify UTXO Update" << endl;
     cout<<endl;
 
-    Transaction tx("tx9", {TransactionInput("tx_genesis_000", 0, "Alice")}, {TransactionOutput(10.0, "Bob"), TransactionOutput(39.0, "Alice")});
+    Transaction tx("tx9", {TransactionInput("tx_genesis_000", 0, "Alice")}, {TransactionOutput(10.0, "Bob"), TransactionOutput(39.999, "Alice")});
     mempool.add_transaction(tx, utxoMgr);
 
     cout<<"Mempool before mining: "<<endl;
